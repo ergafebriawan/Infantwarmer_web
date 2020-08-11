@@ -7,18 +7,18 @@
 #define DHTTYPE DHT22
 DHT dht(DHTPIN, DHTTYPE);
 
-String SSID = "Listiani Bakery";
-String password = "113333555555";
+String SSID = "Listiani Bakery"; //name wifi
+String password = "113333555555"; //password wifi
 
 HTTPClient http;
 String URLget = "http://192.168.0.6/infantwarmer_web/api/Device?id_device=";
 String URLput = "http://192.168.0.6/infantwarmer_web/api/getSensorData";
-String ID_Device = "4";
-const char *host = "192.169.0.6";
-int dataSensor1 = 590;
-int dataSensor2 = 23;
-const char* namaDevice;
-int kipas;
+String ID_Device = "4"; // id device from web
+const char *host = "192.169.0.6"; // IP your Laptop/pc
+int dataSensor1; //data sesnsor Suhu
+int dataSensor2; //data sesnor detakjantung
+const char* namaDevice; // name device from web
+int kipas; //value off kipas
 
 void setup() {
   Serial.begin(115200);
@@ -35,6 +35,8 @@ void setup() {
 // the loop function runs over and over again forever
 void loop() {
   if (WiFi.status() == WL_CONNECTED) {
+
+    //read data from web
 
     http.begin(URLget+ID_Device);
     int httpCode = http.GET();
@@ -63,13 +65,13 @@ void loop() {
     }
     http.end();
 
+    //read data from sensor
     float t = dht.readTemperature();
     float h = dht.readHumidity();
 
+    //sendata from sensor
     Serial.print("connecting to ");
     Serial.println(host);
-
-    // Mengirimkan ke alamat host dengan port 80 -----------------------------------
     WiFiClient client;
     const int httpPort = 80;
     if (!client.connect(host, httpPort)) {
@@ -77,7 +79,6 @@ void loop() {
       return;
     }
 
-    // Isi Konten yang dikirim adalah alamat ip si esp -----------------------------
     URLput = URLput+"?id_device="+ID_Device
           +"&nama_device="+namaDevice
           +"&detak_jantung="+h
@@ -87,7 +88,6 @@ void loop() {
     Serial.print("Requesting URL: ");
     Serial.println(URLput);
 
-    // Mengirimkan Request ke Server -----------------------------------------------
     client.print(String("GET ") + URLput + " HTTP/1.1\r\n" +
                  "Host: " + host + "\r\n" +
                  "Connection: close\r\n\r\n");
