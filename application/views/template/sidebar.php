@@ -12,7 +12,7 @@
 
         <div class="container">
         <li class="nav-item dropdown ">
-            <a class="nav-link " href="<?php echo base_url() ?>ListDevice/">
+            <a class="nav-link " href="<?php echo base_url('ListDevice'); ?>">
                 <i class="fas fa-fw fa-boxes"></i>
                 <span>Manage InfantWarmer</span>
             </a>
@@ -21,7 +21,7 @@
 
         <div class="container">
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="<?php echo base_url('Setting'); ?>">
                 <i class="fas fa-fw fa-cog"></i>
                 <span>Settings</span></a>
         </li>

@@ -11,7 +11,7 @@
 
         <div class="modal-footer">
             <a href="<?= base_url()?>ListDevice" class="btn btn-secondary" >Batal</a>
-            <button type="submit" class="btn btn-primary">Edit Device</button>
+            <button type="submit" class="btn btn-info">Edit Device</button>
         </div>
     </form>
 </div>

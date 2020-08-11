@@ -24,6 +24,8 @@ class Home extends CI_Controller{
         $this->load->view('home/monitoring',$data);
         $this->load->view('home/detail',$data);
         $this->load->view('template/footer');
+        $url = $_SERVER['REQUEST_URI'];
+        header("Refresh: 5; URL=$url");
     }
 
     public function KontrolOn($id){

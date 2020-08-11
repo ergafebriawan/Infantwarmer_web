@@ -9,11 +9,15 @@
         <div class="col-sm-3 mb-3">
             <div class="card" style="width: 15rem;">
                 <img class="card-img-top" src="<?php
-                                                if ($map['suhu'] <= 20) {
-                                                    echo base_url() . '/assets/img/warning.png';
-                                                } else if ($map['suhu'] > 20 && $map['suhu'] < 25) {
+                                                if ($map['suhu'] <= 0) {
+                                                    echo base_url() . '/assets/img/not_active.png';
+                                                } else if ($map['suhu'] > 0 && $map['suhu'] < 20) {
+                                                    echo base_url() . '/assets/img/active.png';
+                                                } else if ($map['suhu'] >= 20 && $map['suhu'] <= 25) {
                                                     echo base_url() . '/assets/img/normal.png';
-                                                } else if ($map['suhu'] >= 25) {
+                                                } else if ($map['suhu'] > 25 && $map['suhu'] <= 28) {
+                                                    echo base_url() . '/assets/img/warning.png';
+                                                }else if ($map['suhu'] > 28) {
                                                     echo base_url() . '/assets/img/alert.png';
                                                 }
                                                 ?>" alt="Card image cap">
@@ -27,7 +31,7 @@
                     } else {
                         echo '<a href=' . base_url() . 'Home/kontrolOff/' . $map['id_device'] . ' class="jarak btn btn-success">Kipas On</a>';
                     } ?>
-                    <a class="jarak btn btn-primary" data-toggle="modal" data-target="#device<?= $map['id_device']; ?>">Detail</a>
+                    <button class="jarak btn btn-info" data-toggle="modal" data-target="#device<?= $map['id_device']; ?>">Detail</button>
                 </div>
             </div>
         </div>
