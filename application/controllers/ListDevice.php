@@ -6,6 +6,9 @@ class ListDevice extends CI_Controller
         parent::__construct();
         $this->load->model('Device_model');
         $this->load->library('form_validation');
+        if($this->session->userdata('status') != "login"){
+			redirect(base_url("Login"));
+		}
     }
     public function index($nama = '')
     {

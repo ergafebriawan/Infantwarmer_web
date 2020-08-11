@@ -19,9 +19,9 @@
         </div>
     <?php endif ?>
 
-    <?php if ($this->session->set_flashdata('flash')) : ?>
+    <?php if ($this->session->flashdata('flash')) : ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-            Device berhasil <strong><?= $this->session->set_flashdata('flash'); ?></strong>!
+            Device berhasil <strong><?= $this->session->flashdata('flash'); ?></strong>!
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>

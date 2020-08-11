@@ -8,16 +8,17 @@ class Login extends CI_Controller{
     }
 
     public function index(){
-        $this->load->view('template/header');
+        $data['judul'] = 'Login';
+        $this->load->view('template/header', $data);
         $this->load->view('login/index');
-        $this->load->view('template/footer');
     }
 
     public function proses_login(){
-        $username = $this->input->post('username');
-		$password = $this->input->post('password');
+         $username = $this->input->post('inputUserID');
+         $password = $this->input->post('inputPassword');
+        
 		$where = array(
-			'username' => $username,
+			'user_id' => $username,
 			'password' => $password
 			);
 		$cek = $this->User->getUser("user",$where)->num_rows();
@@ -30,16 +31,17 @@ class Login extends CI_Controller{
  
 			$this->session->set_userdata($data_session);
  
-			redirect(base_url("admin"));
+			redirect(base_url("Home"));
  
 		}else{
-			echo "Username dan password salah !";
+            $this->session->set_userdata('message', 'username atau password salah');
+            redirect(base_url("Login"));
 		}
     }
 
     public function logout(){
         $this->session->sess_destroy();
-		redirect(base_url('login'));
+		redirect(base_url('Login'));
     }
 }
 

@@ -5,6 +5,10 @@ class Home extends CI_Controller{
     public function __construct(){
         parent::__construct();
         $this->load->model('Device_model');
+
+        if($this->session->userdata('status') != "login"){
+			redirect(base_url("Login"));
+		}
     }
 
     public function index($nama = ''){
