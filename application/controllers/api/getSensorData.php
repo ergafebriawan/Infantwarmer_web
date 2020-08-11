@@ -21,9 +21,6 @@ class getSensorData extends REST_Controller{
             'suhu' => $this->get('suhu'),
             'kipas' => $this->get('kipas')
         ];
-
-        echo $id;
-        echo json_encode($data);
         
         if($this->Device->updateDevice($data, $id) > 0){
             $this->response([
